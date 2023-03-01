@@ -17,64 +17,136 @@ class App extends Component<{store: Store}> {
     return (
       <>
         <Title>Buy or Rent</Title>
-        <Form labelCol={{span: 8}} wrapperCol={{span: 8}} initialValues={store}>
+        <Form
+          labelCol={{span: 12}}
+          wrapperCol={{span: 8}}
+          initialValues={store}
+        >
           <Form.Item
-            label="Total cost"
+            label="What's the total cost to buy this property? (including property price, agent fee, tax...etc)"
             name="totalCost"
             rules={[{required: true, message: 'Please specify total cost!'}]}
           >
             <InputNumber
               min={0}
+              formatter={value =>
+                `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+              }
+              style={{width: 128}}
               onChange={value => (store.totalCost = value!)}
             />
           </Form.Item>
           <Form.Item
-            label="Down payment"
-            name="downPayment"
-            rules={[{required: true, message: 'Please specify down payment!'}]}
+            label="How much out-of-pocket cash are you going to pay? (including down payment, agent fee...etc)"
+            name="outOfPocket"
+            rules={[
+              {required: true, message: 'Please specify out-of-pocket cash!'},
+            ]}
           >
             <InputNumber
               min={0}
-              onChange={value => (store.downPayment = value!)}
+              formatter={value =>
+                `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+              }
+              style={{width: 128}}
+              onChange={value => (store.outOfPocket = value!)}
             />
           </Form.Item>
           <Form.Item
-            label="Interest"
-            name="interest"
-            rules={[{required: true, message: 'Please specify interest!'}]}
+            label="If you don't buy this house, what is the estimated investment interest with your out-of-pocket cash?"
+            name="investmentInterest"
+            rules={[
+              {required: true, message: 'Please specify investment interest!'},
+            ]}
           >
             <InputNumber
               min={0}
               formatter={value => `${value}%`}
               step="0.05"
-              onChange={value => (store.interest = value!)}
+              style={{width: 128}}
+              onChange={value => (store.investmentInterest = value!)}
             />
           </Form.Item>
           <Form.Item
-            label="Property tax"
-            name="propertyTax"
-            rules={[{required: true, message: 'Please specify property tax!'}]}
+            label="What is the mortgage interest?"
+            name="mortgageInterest"
+            rules={[
+              {
+                required: true,
+                message: 'Please specify the mortgage interest!',
+              },
+            ]}
           >
             <InputNumber
               min={0}
+              formatter={value => `${value}%`}
+              step="0.05"
+              style={{width: 128}}
+              onChange={value => (store.mortgageInterest = value!)}
+            />
+          </Form.Item>
+          <Form.Item
+            label="What is the estimated monthly property tax?"
+            name="propertyTax"
+            rules={[
+              {
+                required: true,
+                message: 'Please specify estimated property tax!',
+              },
+            ]}
+          >
+            <InputNumber
+              min={0}
+              style={{width: 128}}
               onChange={value => (store.propertyTax = value!)}
             />
           </Form.Item>
           <Form.Item
-            label="HOA"
+            label="What is the estimated monthly HOA"
             name="hoa"
-            rules={[{required: true, message: 'Please specify HOA!'}]}
-          >
-            <InputNumber min={0} onChange={value => (store.hoa = value!)} />
-          </Form.Item>
-          <Form.Item
-            label="Insurance"
-            name="insurance"
-            rules={[{required: true, message: 'Please specify insurance!'}]}
+            rules={[
+              {
+                required: true,
+                message: 'Please specify the estimated monthly HOA!',
+              },
+            ]}
           >
             <InputNumber
               min={0}
+              style={{width: 128}}
+              onChange={value => (store.hoa = value!)}
+            />
+          </Form.Item>
+          <Form.Item
+            label="What is the estimated monthly home insurance?"
+            name="insurance"
+            rules={[
+              {
+                required: true,
+                message: 'Please specify the estimated monthly home insurance!',
+              },
+            ]}
+          >
+            <InputNumber
+              min={0}
+              style={{width: 128}}
               onChange={value => (store.insurance = value!)}
+            />
+          </Form.Item>
+          <Form.Item
+            label="What is the estimated monthly rent for this property?"
+            name="rent"
+            rules={[
+              {
+                required: true,
+                message: 'Please specify the estimated monthly rent!',
+              },
+            ]}
+          >
+            <InputNumber
+              min={0}
+              style={{width: 128}}
+              onChange={value => (store.rent = value!)}
             />
           </Form.Item>
         </Form>
