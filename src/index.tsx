@@ -18,7 +18,7 @@ class App extends Component<{store: Store}> {
       <>
         <Title>Buy or Rent</Title>
         <Form
-          labelCol={{span: 12}}
+          labelCol={{span: 16}}
           wrapperCol={{span: 8}}
           initialValues={store}
         >

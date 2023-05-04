@@ -21,6 +21,7 @@ class Result extends Component<{store: Store}> {
       ).toFixed(2)
     );
     const moneyWord = store.rent < cost ? 'lose' : 'make';
+    const houseWord = store.rent < cost ? 'increases' : 'descreases';
     return (
       <>
         <Title level={2}>Total monthly cost</Title>
@@ -48,6 +49,12 @@ class Result extends Component<{store: Store}> {
           {store.rent - cost > 0 ? cost : store.rent} ={' '}
           {Math.abs(store.rent - cost).toFixed(2)} per month if you buy this
           property.
+        </Title>
+        <Title level={4}>
+          However, if the property {houseWord}{' '}
+          {Math.abs(store.rent - cost).toFixed(2)} * 12 ={' '}
+          {Math.abs(store.rent - cost) * 12} in value in a year, you will break
+          even.
         </Title>
       </>
     );
