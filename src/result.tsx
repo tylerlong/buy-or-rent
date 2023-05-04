@@ -1,5 +1,5 @@
 import React from 'react';
-import {Component} from '@tylerlong/use-proxy/build/react';
+import {Component} from 'manate/react';
 
 import {Store} from './store';
 import {Typography} from 'antd';
@@ -44,8 +44,10 @@ class Result extends Component<{store: Store}> {
         </div>
         <Title level={3}>= {store.rent} per month</Title>
         <Title level={2}>
-          You will {moneyWord} {Math.abs(store.rent - cost).toFixed(2)} per
-          month if you buy this property.
+          You will {moneyWord} {store.rent - cost > 0 ? store.rent : cost} -{' '}
+          {store.rent - cost > 0 ? cost : store.rent} ={' '}
+          {Math.abs(store.rent - cost).toFixed(2)} per month if you buy this
+          property.
         </Title>
       </>
     );

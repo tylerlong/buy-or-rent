@@ -1,4 +1,4 @@
-import {useProxy} from '@tylerlong/use-proxy';
+import {manage} from 'manate';
 
 export class Store {
   totalCost = 1500000;
@@ -11,6 +11,6 @@ export class Store {
   rent = 5000;
 }
 
-const store = useProxy(new Store());
+const store = manage(new Store());
 
 export default store;

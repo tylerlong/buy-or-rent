@@ -1,7 +1,7 @@
 import {Form, InputNumber} from 'antd';
 import React from 'react';
 import {createRoot} from 'react-dom/client';
-import {Component} from '@tylerlong/use-proxy/build/react';
+import {Component} from 'manate/react';
 import {Typography} from 'antd';
 import 'antd/dist/reset.css';
 
