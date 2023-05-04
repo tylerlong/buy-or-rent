@@ -1,8 +1,8 @@
 {
   "license": "UNLICENSED",
   "scripts": {
-    "build": "parcel src/index.html",
-    "release": "parcel build src/index.html --dist-dir ../bor --public-url ."
+    "serve": "parcel src/index.html",
+    "release": "parcel build src/index.html --dist-dir docs --public-url ."
   },
   "dependencies": {
     "@tylerlong/use-proxy": "^1.1.0",
